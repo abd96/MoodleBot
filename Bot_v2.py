@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup as bs
 import os 
 
 from requests import session
-
+# Hello Torben
 #source url = https://sso.itmc.tu-dortmund.de/openam/UI/Login?goto=http://moodle.tu-dortmund.de/login
 #target url = https://moodle.tu-dortmund.de/my/ 
 
