@@ -6,7 +6,7 @@ from Handlers.Handler import Handler
 
 class LoginHandler(Handler):
 	
-	def __init__(self,username, password):
+	def __init__(self,username, password, loginScreen):
 		super()
 		self.login_source_url = 'https://sso.itmc.tu-dortmund.de/openam/UI/Login?goto=http://moodle.tu-dortmund.de/login'
 		self.login_target_url = 'https://moodle.tu-dortmund.de/my/'
@@ -17,10 +17,10 @@ class LoginHandler(Handler):
 				'IDToken1' : username  , 
 				'IDToken2' : password 
 		}
-
+		self.loginScreen = loginScreen
 	
 	# @return (response, session)
-	def login(self, loginScreen):
+	def login(self):
 		
 		self.handling = True
 		with requests.Session() as session :
@@ -29,7 +29,7 @@ class LoginHandler(Handler):
 		
 		# status code not 200 ?? WTF?
 		if response.status_code != 200:
-			loginScreen.notify(f"Error when logging in to moodle with status code {response.status_code}")
+			self.loginScreen.notify(f"Error when logging in to moodle with status code {response.status_code}")
 
 		# check title 
 		soup = bs(response.text, 'html.parser')
@@ -37,12 +37,15 @@ class LoginHandler(Handler):
 		t = soup.findAll('title')
 		title = str(t[0])
 		
+		self.handling = False
+
 		# unvalid username or password
 		if ('(GUEST)'in title):
-			loginScreen.notify("Unvalid Username or password, why wont you try again!")
+			self.loginScreen.notify("Unvalid Username or password, why wont you try again!")
+			
 			return None, None
 		# valid username or password
 		else:
-			loginScreen.notify("Login Successfully")
+			self.loginScreen.notify("Login Successfully")
 			return response, session
 
