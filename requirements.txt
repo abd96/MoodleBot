@@ -1,5 +1,12 @@
---python >= 3 
---urllib 
---base63
---requests
---bs4
+beautifulsoup4==4.7.1
+certifi==2019.3.9
+chardet==3.0.4
+docutils==0.14
+idna==2.8
+Kivy==1.11.0
+Kivy-Garden==0.1.4
+pkg-resources==0.0.0
+Pygments==2.4.2
+requests==2.22.0
+soupsieve==1.9.1
+urllib3==1.25.3
