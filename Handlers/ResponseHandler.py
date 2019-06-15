@@ -27,7 +27,7 @@ class ResponseHandler(Handler):
 		for tag in tags:
 			link = str(tag.get("href"))
 			if link not in self.courses and self.isCourse(link) and not link == '#myoverview_courses_view': 
-					self.courses.append(link)
+				self.courses.append(link)
 
 		self.handling = False
 		return self.courses
