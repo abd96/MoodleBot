@@ -36,8 +36,6 @@ pointerDict = {
 	'[Kurs: Übung Rechnernetze und verteilte Systeme, LSF, 040114]' : 'RvS',
 	'[Kurs: Elektrotechnik / Nachrichtentechnik für Informatiker, 080625, 2018]' : 'Etnt'
 
-
-
 }
 
 #*************************************************************************************************************
