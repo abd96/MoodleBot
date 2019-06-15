@@ -34,7 +34,9 @@ class LoginScreen(FloatLayout):
        	self.username_label , self.password_label = self.addLabels()
         self.login_button = self.addButtons()
 
-    def updateInfoLabel(self, text):
+        # Widgets for folder path input 
+
+    def notify(self, text):
         self.info_label.text = text
 
     def addTextInput(self):
@@ -79,30 +81,33 @@ class LoginScreen(FloatLayout):
         self.add_widget(login_button)
         return login_button
 
-    def remove_login_widget(self):
+    def remove_login_widgets(self):
         self.remove_widget(self.username_input)    
         self.remove_widget(self.password_input)
         self.remove_widget(self.username_label)
         self.remove_widget(self.password_label)
         self.remove_widget(self.login_button)
+    
+    #def add_path_widgets(self):
 
     def getLoginData(self, obj):
         # User didnt enter a username
         if not self.username_input.text:
-            self.updateInfoLabel("No username entered!")
+            self.notify("No username entered!")
         # user entered username but no password
         elif not self.password_input.text:
-            self.updateInfoLabel("No Password entered!")
+            self.notify("No Password entered!")
         # user entered username and password
         else:
-            self.updateInfoLabel("Logging in to your account")
+            self.notify("Logging in to your account")
             loginHandler = LoginHandler(self.username_input.text, self.password_input.text)
             
             response, session = loginHandler.login(self)
             # sucessfull login 
             if not response is None and not session is None:
-                self.remove_login_widget()
-                
+                self.remove_login_widgets()
+                # self.add_path_widgets()
+
 class MoodleApp(App):
     
     def __init__(self, **kwargs):

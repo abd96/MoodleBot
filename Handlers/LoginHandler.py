@@ -29,7 +29,7 @@ class LoginHandler(Handler):
 		
 		# status code not 200 ?? WTF?
 		if response.status_code != 200:
-			loginScreen.updateInfoLabel(f"Error when logging in to moodle with status code {response.status_code}")
+			loginScreen.notify(f"Error when logging in to moodle with status code {response.status_code}")
 
 		# check title 
 		soup = bs(response.text, 'html.parser')
@@ -39,10 +39,10 @@ class LoginHandler(Handler):
 		
 		# unvalid username or password
 		if ('(GUEST)'in title):
-			loginScreen.updateInfoLabel("Unvalid Username or password, why wont you try again!")
+			loginScreen.notify("Unvalid Username or password, why wont you try again!")
 			return None, None
 		# valid username or password
 		else:
-			loginScreen.updateInfoLabel("Login Successfully")
+			loginScreen.notify("Login Successfully")
 			return response, session
 
