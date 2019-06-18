@@ -12,13 +12,10 @@ import datetime
 import getpass
 
 """-------------------------------------------------------------------------------------------------------------
-
 	/home/abdul/Schreibtisch/Python/MoodleBot/pdfs/*******
 	RvS_Bot
 	Logik_Bot
 	******_Bot	
-
-
 -------------------------------------------------------------------------------------------------------------"""
 
 #*************************************************************************************************************
@@ -62,7 +59,6 @@ def logIn_2Moodle(username , download_path  ):
 		title = soup1.findAll('title')
 		if('(GUEST)' not in title):
 		break
-
 		login_data= {
 				'goto' : 'aHR0cDovL21vb2RsZS50dS1kb3J0bXVuZC5kZS9sb2dpbg==',
 				'0':	'UTF-8',
@@ -279,4 +275,4 @@ def login(username):
 		
 
 if __name__=='__main__':
-	logIn_2Moodle(sys.argv[1] , sys.argv[2] )
+logIn_2Moodle(sys.argv[1] , sys.argv[2] )
